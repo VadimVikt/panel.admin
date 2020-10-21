@@ -1,15 +1,27 @@
+{{--@php--}}
+{{--$caterories = \App\Models\BlogCategory::all();--}}
+{{--@endphp--}}
+
 <!-- sidebar menu -->
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <div class="menu_section">
         <h3>General</h3>
         <ul class="nav side-menu">
             <li><a><i class="fa fa-home"></i> Главная <span class="fa fa-chevron-down"></span></a>
+
                 <ul class="nav child_menu">
-                    <li><a href="/catalog">Каталог</a></li>
-                    <li><a href="index2.html">Dashboard2</a></li>
-                    <li><a href="index3.html">Dashboard3</a></li>
+                    @if(isset($categories))
+                    @foreach($categories as $category)
+                        <li><a href="/admin/{{ $category->slug }}">{{ $category->title }}</a></li>
+                    @endforeach
+                    @else
+
+                    <li><a href="/admin">На главную</a></li>
+{{--                    <li><a href="index3.html">Dashboard3</a></li>--}}
+                    @endif
                 </ul>
             </li>
+
             <li><a><i class="fa fa-edit"></i> Формы <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="/form">Главная форма</a></li>
